@@ -1,6 +1,6 @@
 import os
 import openai
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS, cross_origin
 import numpy as np
 app = Flask(__name__)
@@ -9,6 +9,12 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 openai.api_key = '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'
 os.environ['OPENAI_API_KEY'] = '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'
+
+
+@app.route('/',methods=['GET'])  # route to display the home page
+@cross_origin()
+def homePage():
+    return render_template("index.html")
 
 
 @app.route('/api/timeline', methods=['GET'])
